@@ -55,5 +55,22 @@ TCP특징 3가지
 - PATCH : 리소스 부분 변경
 - DELETE : 리소스 삭제
 
-
-//http메서드 속성 부터
+22/07/27
+ 클라이언트에서 서버로 데이터 전송은 크게 2가지.
+- 쿼리 파라티머를 통한 데이터 전송.
+  GET 주로 정렬필터(검색어)
+- 메세지 바디를 통한 데이터 전송
+  POST,PUT,PATCH 예)회원가입, 상품주문, 리소스 등록, 변경 등
+  
+ HTML Form 데이터 전송
+- HTML Form 데이터 전송은 get,post만 지원.
+- 전송시 웹 브라우저가 form태그를 읽어 get방식일경우 쿼리파라미터로, 
+  post방식일경우 message body에 실어 보낸다.
+  
+ HTTP API 데이터 전송
+- HTML form을 거치치 않고 데이터를 전송하는 경우 HTTP API 데이터 전송이라고함
+  ex) 서버to서버, 앱 클라이언트, 웹 클라이언트(ajax, react, vuejs같은 웹 클라이언트와 API통신), Json
+  
+ 컬렉션(Collection)
+- 서버가 관리하는 리소스 디렉토리
+- 서버가 리소스의 URI를 생성하고 관리
