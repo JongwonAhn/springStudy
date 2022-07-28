@@ -64,7 +64,7 @@ TCP특징 3가지
   
  HTML Form 데이터 전송
 - HTML Form 데이터 전송은 get,post만 지원.
-- 전송시 웹 브라우저가 form태그를 읽어 get방식일경우 쿼리파라미터로, 
+- 전송시 웹 브라우저가 form태그를 읽어 get방식일경우 쿼리파라미터로,  
   post방식일경우 message body에 실어 보낸다.
   
  HTTP API 데이터 전송
