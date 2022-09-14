@@ -28,10 +28,33 @@
 - 협력관계 그대로 재사용 할 수 있다.
 - *항상 테스트 코드를 작성해야 한다. 성공 케이스 뿐만 아니라 실패 케이스도 함께.
 
-//~ 새로운 할인 정책 적용과 문제점 부터
+9/14
+- OrderServiceImpl이 DiscountPolicy의 인터페이스 뿐만 아니라 구현클래스도 의존하는상황
+- AppConfig를 통해 실제 동작에 필요한 구현 객체를 생성후 생성자를 통해서 주입(연결)한다.
+  -> DIP 위반. 추상에만 의존하도록 변경(인터페이스에만 의존)
+- DIP 의존관계 역전 원칙 (Dependency Inversion Principle)이란?
+  의존 관계를 맺을때 변화하기 쉬운 것 또는 자주 변화하는 것에 의존하기 보다는 변화하기 어려운것, 거의 변화가 없는것에 의존해야함
+  즉, 변하지 않는것(인터페이스) 에 의존하고, 변하기 쉬운것(구현체 클래스) 에는 의존x
+  
+ 스프링 컨테이너 생성
+- ApplicationContext를 스프링 컨테이너라 한다.
+- 스프링 컨테이너 생성 new AnnotationConfigApplicationContext(Appconfig.class);
+  이 클래스는 ApplicationContext 인터페이스의 구현체 이다.
+  스프링 컨테이너를 생성할 때는 구성 정보를 지정해 주어야 한다. 그게 바로 Appconfig.class를 파라미터로 넘긴 이유이다.
+  스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보를 사용해서 스프링빈(@Bean)을 등록한다
+  빈 이름은 메서드 이름을 사용하며, 항상 다르게 부여해야 한다.
+
+//스프링 빈 조회 - 동일한 타입이 둘 이상 부터
  
 --인텔리제이 단축키
-- art + enter 구현체 생성
+- art + enter 구현체 생성, 임포트(static import)
 - art + insert 파일 생성, 생성자, getter/setter생성
 - F2 오류난곳으로 바로 이동
 - Ctrl + shift + t Test파일 을 test패키지 하위로 자동생성해줌.
+- Ctrl + D  한줄 복사
+- Ctrl + x  한줄 삭제
+- Ctrl + e  히스토리보기
+- Ctrl + alt + m 리팩토링
+- Ctrl + alt + v 변수 추출
+- iter + tap  for문 자동완성
+- soutv - 변수명 출력, soutm - 메서드 출력
