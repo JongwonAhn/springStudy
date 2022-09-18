@@ -92,8 +92,27 @@
 - 생성자에 @Autowired를 지정하면 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 주입한다.
 - 컴포넌트 스캔 대상은 @Component이외에도 @Controller, @Service, @Repository, @Configuration이 있다.
   
-  
+  의존관계 주입시 생성자 주입을 사용
+- 생성자 주입은 객체를 생성할대 딱 1번만 호출되므로 이후에 호출되는 일이 없다. 따라서 불변하게 설계 할 수 있다.
+- 주입 데이터를 누락했을때 컴파일 오류가 발생하여 어떤값을 필수로 주입해야 하는지 알 수 있다. 
+- final 키워드를 사용하여 생성자에서 혹시라도 값이 설정되지 않는 오류를 컴파일 시점에서 막아준다.
+- 생성자가 하나일 경우 @Autowired 생략가능  
+- lombok라이브러리의 @RequiredArgsConstructor 사용시, fianl로 선언된 필드의 생성자를 자동으로 만들어줌
 
+9/18
+  조회 대상 빈이 2개 이상일때 해결방법
+- 1. @Autowired 필드명 매칭
+- 2. @Qualifer 끼리 매칭 -> 빈 이름 매칭
+- 3. @Primary 사용
+
+  빈 생명주기 콜백
+  스프링 빈의 이벤트 라이프 사이클
+- 스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능 제공
+- 스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 -> 초기화 콜백 -> 사용 -> 소멸전 콜백 -> 스프링 종료
+- 3가지 방법중 @PostConstruct, @PreDestory를 사용하라.
+
+//빈 스코프 부터
+  
  
 --인텔리제이 단축키
 - art + enter 구현체 생성, 임포트(static import)
@@ -101,12 +120,15 @@
 - F2 오류난곳으로 바로 이동
 - Ctrl + shift + t Test파일 자동생성
 - Ctrl + shift + enter  다음줄입력칸으로 자동 이동
-- Ctrl + shift + o  import정리
+- Ctrl + alt + o  import정리
 - Ctrl + D  한줄 복사
 - Ctrl + x  한줄 삭제
-- Ctrl + e  히스토리보기
+- Ctrl + e  히스토리보기 
+- Ctrl + b  사용하는 코드를 보여줌   
 - Ctrl + alt + m 리팩토링
 - Ctrl + alt + v 변수 추출
+- Ctrl + alt + b 구현체로 바로 이동
+- Ctrl + F12 해당 파일 내 메서드, 필드 객체 전부 보여줌
 - shift + shift 검색
 - iter + tap  for문 자동완성
 - soutv - 변수명 출력, soutm - 메서드 출력
