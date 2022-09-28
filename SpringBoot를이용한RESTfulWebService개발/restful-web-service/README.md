@@ -9,11 +9,13 @@
 (+예전에 이클립스에서 dependency오류가 났을때 .m2를 전부 삭제후 이클립스를 재실행 했을때 자동으로 dependency가 .m2에 추가됬던이유. spring관련은 org안에 생성)
 
 
-- maven프로젝트일 경우 메이븐 설정파일을 pom.xml에서 관리함. (application.properties->설정이름=값)
-- gradle프로젝트일 경우 build.gradle로 관리 (application.yml->설정이름:값)
+- maven프로젝트일 경우 메이븐 설정파일을 pom.xml에서 관리함. 
+- gradle프로젝트일 경우 build.gradle로 관리 
 
 
 - resources/application.properties에 스프링 실행에 필요한 설정 파일을 지정가능 .yml을 사용하기도함(바꾸는 이유는 추후 강의에서 언급예정)
+- (application.properties->설정이름=값)
+- (application.yml->설정이름:값)
 
 
 - SpringBoot의 프로젝트일경우, 톰캣을 내장하고 있기에, WebApplication을 실행하면, 자동으로 톰캣 서버가 가동된다.
@@ -86,7 +88,19 @@ ex)유료회원에 대한 요청 처리만 할수있도록 Filter를 거친다�
 공통된 로그를 출력하는작업(사후처리)는 Interceptor에서 처리.
 https://www.baeldung.com/spring-mvc-handlerinterceptor-vs-filter
 
+9/28
 
+- Swagger
+  - API들이 가지고 있는 스펙을 명세, 관리할수 있는 문서.
+  - SpringBoot에서 Swagger를 사용하면 컨트롤러에 명시된 어노테이션을 해석하여 API문서를 자동으로 만들어준다
+  - springfox-boot-starter Dependency추가 (최신버전 Swagger2,-ui모두 포함)
+  - http://localhost:8088/swagger-ui/index.html 접속시, 자동으로 API가 문서화 되어html로 보여짐.
+  - (Swagger가 내가만든 컨트롤러 정보를 html로 만들어서 다 보여줌 신기)
+
+//Spring Boot 2.6 버전 이후에 spring.mvc.pathmatch.matching-strategy 값이
+ant_apth_matcher에서 path_pattern_parser로 변경되면서
+몇몇 라이브러리(swagger포함)에 오류 발생(라이브러리가 존재하나, 오류가 발생함)
+application.yml or properties에 spring-mvc-pathmatch-matching-strategy:ant_path_matcher 추가
 
 
 
