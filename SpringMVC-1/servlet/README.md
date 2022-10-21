@@ -78,3 +78,37 @@ WAS의 멀티 쓰레드 지원
 @WebServlet 
 - name: 서블릿 이름
 - urlPatterns: URL 매핑
+
+ 2020/10/21
+ 
+HttpServletRequest의 역할
+- HTTP요청 메세지를 개발자가 직접 파싱해서 사용해도 되지만, 매우 불편할 것이다. 서블릿은 개발자가 HTTP요청 메세지를 편리하게 사용할수 있도록
+개발자 대신에 HTTP 요청 메세지를 직접 파싱한다. 그 결과를 HttpRequest 객체에 담아서 제공한다.
+- 해당 HTTP 요청이 시작될때부터 끝날때까지 유지되는 임시 저장소 기능
+  - 저장 : request.setAttribute(name, value)
+  - 조회 : request.getAttribute(name)
+- 세션관리 기능
+  - request.getSession(create : true)
+- HttpServletRequest, HttpServletResponse를 사용할때 가장 중요한점은 HTTP스펙이 제공하는 요청, 응답 메세지 자체를 이해해야 한다.
+
+HTTP 요청 메세지를 통해 클라이언트에서 서버로 데이터를 전달하는 방법
+- GET - 쿼리파라미터
+  - /url?username=hello&age=20
+  - 메세지 바디 없이 쿼리스트링에 데이터를 포함해서 전달
+  - 예)검색, 필터, 페이징에 많이 사용
+- POST - HTML Form
+  -  content-type:application/x-www-form-urlencoded
+  -  메세지 바디에 쿼리 파라미터 형식으로 전달 username=hello&age=20
+  -  예)회원가입, 상품주문, HTML Form 사용
+- HTTP message 에 데이터를 직접 담아 요청
+  - HTTP API에서 주로 사용, Json, XML, TEXT
+  - 데이터 형식은 주로 Json 사용
+  - POST, PUT, PATCH
+
+HttpServleteResponse의 역할
+- HTTP 응답 메세지 생성
+  - HTTP 응답코드 지정
+  - 헤더 생성
+  - 바디 생성
+- content-Type, 쿠키, Redirect
+- 
