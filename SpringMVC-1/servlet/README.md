@@ -152,4 +152,43 @@ viewResolver
 - view의 논리 이름을 FrontController에게 반환한다.
 - 왜 사용하나? - 예를들어 폴더명이 바뀔경우, 컨트롤러에 직접 손댈필요없기에 물리적/논리적 으로 나눈다.
 
+2022/10/24
 
+- v4 -> 컨트롤러가 viewName만 반환
+- v5 -> 어댑터 패턴을 사용해서 프론트 컨트롤러가 다양한 방식의 컨트롤러를 처리하도록 변경
+ 
+핸들러 어댑터
+- 중간에 어댑터 역할을 하는 어댑터가 추가되었는데 이름이 핸들러 어댑터이다.
+여기서 어댑터 역할을 해주는 덕분에 다양한 종류의 컨트롤러를 호출할수 있다
+
+핸들러
+- 컨트롤러의 이름을 더 넓은 범위인 핸들러로 변경했다. 그 이유는 이제 어댑터가 있기 때문에
+꼭 컨트롤러의 개념 뿐만 아니라 어떠한 것이든 해당하는 종류의 어댑터만 있으면 다 처리할수 있기 때문이다.
+
+정리
+- v1 : 프론트 컨트롤러 도입
+  - 기존 구조를 최대한 유지하면서 프론트 컨트롤러를 도입
+- v2 : View 분류
+  - 단순 반복되는 뷰 로직 분리
+- v3 : Model 추가
+  -  서블릿 종속성 제거
+  -  뷰 이름 중복 제거
+- v4 : 단순하고 실용적인 컨트롤라
+  -  v3와 거의 비슷
+  -  구현 입장에서 ModelView를 직접 생성해서 반환하지 않도록 편리한 인터페이스 제공
+- v5 : 유연한 컨트롤러
+  -  어댑터 도입
+  -  어댑터를 추가해서 프레임워크를 유연하고 확장성 있게 설계
+- 직접 만든 프레임워크 -> 스프링MVC비교
+  - FrontController -> DispatcherServlet
+  - HandlerMappingMap -> HandlerMapping
+  - MyHandlerAdapter -> HandlerAdapter
+  - ModelView -> ModelAndView
+  - MyView -> View
+
+DispacherServlet 구조
+- 요청 흐름
+  - 서블릿이 호출되면 HttpServlet이 제공하는 service()가 호출된다
+  - 스프링MVC는 DispatcherServlet의 부모인 FramworkServlet 에서 Service()를 오버라이드 해두었다
+  - FramworkServlet.service() 를 시작으로 여러 메서드가 호출되면서 DispacherServlet.doDispatc()가 호출된다
+  -  
