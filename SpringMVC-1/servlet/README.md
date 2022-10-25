@@ -191,4 +191,32 @@ DispacherServlet 구조
   - 서블릿이 호출되면 HttpServlet이 제공하는 service()가 호출된다
   - 스프링MVC는 DispatcherServlet의 부모인 FramworkServlet 에서 Service()를 오버라이드 해두었다
   - FramworkServlet.service() 를 시작으로 여러 메서드가 호출되면서 DispacherServlet.doDispatc()가 호출된다
-  -  
+
+
+2022/10/25
+
+스프링MVC
+@Controller
+- 스프링이 자동으로 스프링 빈으로 등록한다. (내부에 @Component가 있어 컴포넌트 스캔 대상이됨)
+- 스프링MVC에서 애노테이션 기반 컨트롤러로 인식한다
+
+@RequestMapping
+- 요청 정보를 매핑한다. 해당 URL이 호출되면 이 메서드가 호출된다.
+- 애노테이션 기반으로 동작하므로 메서드의 이름은 임의로 지으면 된다.
+
+RequestMappingHandlerMapping은 스프링 빈 중에서 @RequestMapping 또는 @Controller 가
+클래스 래벨에 붙어 있는 경우에 매핑 정보로 인식한다.
+
+SpringMVC 동작 순서
+- 클라이언트 HTTP요청
+1. 핸들러 조회 : 핸들러 매핑을 통해 요청URL에 매핑된 핸들러(컨트롤러를)를 조회한다
+2. 핸들러 어댑터 조회 : 핸들러를 실행할 수 있는 핸들러 어댑터를 조회한다
+3. 핸들러 어댑터 실행 : 핸들러 어댑터를 실행한다
+4. 핸들러 실행 : 핸들러 어댑터가 실제 핸들러를 실행한다
+5. ModelAndView 반환 : 핸들러 어댑터는 핸들러가 반환하는 정보를 ModelAndView로 변환해서 반환한다
+6. viewResolver 호출 : 뷰 리졸버를 찾고 실행한다.
+- JSP의 경우 InternalResourceViewResolver 가 자동 등록되고 사용된다.
+7. View 반환 : 뷰 리졸버는 뷰의 논리 이름을 물리 이름으로 바꾸고 렌더링 역할을 담당하는 뷰 객체를 반환한다.
+- JSP의 경우 InternalResourceView(JstlView) 를 반환하는데, 내부에 forward() 로직이 있다.
+8. 뷰 렌더링 : 뷰를 렌더링 한다.
+
