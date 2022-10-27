@@ -1,5 +1,7 @@
 # SrpingMVC1
 
+2022/10/26
+
 @RestController
 - @RestController는 반환값으로 뷰를 찾는것이 아니라 "Http 메세지 바디에 바로 입력한다."
 
@@ -29,7 +31,8 @@ HTTP message body에 데이터를 직접 담아서 요청시
 - 요청 파라미터와 다르게 HTTP 메세지 바디를 통해 데이터가 직접 넘어오는 경우는 @RequestParam, @ModelAttribute 를 사용할 수 없다.
 
 HttpEntity
-- HTTP header, bodu 정보를 편리하게 조회
+- HttpEntity, @RequestBody 를 사용하면 HTTP 메세지 컨버터가 HTTP메세지 바디의 내용을 우리가 원하는 문자나 객체 등으로 변환해준다
+- HTTP header, body 정보를 편리하게 조회
 - 메세지 바디 정보를 직접 조회
 - 요청 파라미터를 조회하는 기능과는 관계 없음.
 - 응답에도 사용 가능 (메세지 바디 정보 직접 반환, 헤더 정보 포함 가능)
@@ -38,4 +41,11 @@ HttpEntity
 요청파라미터 vs HTTP 메세지 바디 정리.
 - 요청 파라미터를 조회하는 기능 : @RequestParam, @ModelAttribute
 - HTTP메세지 바디를 직접 조회하는 기능 : @RequestBody
+
+2022/10/27
+
+뷰 템플릿
+- 뷰 탬플릿을 거쳐 HTML이 생성되고, 뷰가 응답을 만들어서 전달한다.
+- 일반적으로 HTML을 동적으로 생성하는 용도로 사용하지만, 다른 것들도 가능하다. 뷰 탬플릿이 만들수 있는것이라면 뭐든지 가능하다.
+- 
 
